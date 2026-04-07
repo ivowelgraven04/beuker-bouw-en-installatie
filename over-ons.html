@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Over Ons — Beuker Bouw & Installatie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; color: #222; overflow-x: hidden; background: #fff; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<style>
+  .custom-navbar { background: #fff; padding: 1rem 2rem; font-family: 'Nunito', sans-serif; position: sticky; top: 0; z-index: 999; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: background 0.3s ease; }
+  .navbar-content { display: flex; align-items: center; justify-content: space-between; width: 100%; position: relative; }
+  .mobile-logo { display: none; transition: opacity 0.3s ease, visibility 0.3s ease; }
+  .mobile-logo img { height: 50px; width: auto; }
+  .desktop-logo-container { display: flex; }
+  .nav-menu { display: flex !important; align-items: center !important; justify-content: center !important; flex: 1 1 auto !important; margin: 0 auto !important; padding: 0 !important; list-style: none !important; gap: 2rem; }
+  .nav-item { margin: 0 !important; padding: 0 !important; position: relative; }
+  .nav-item a { text-decoration: none; color: #222; font-weight: 500; padding: 0.5rem 0; display: inline-block; font-size: 17px; transition: color 0.3s; }
+  .nav-item a:hover { color: #CC0022; }
+  .mega-dropdown:hover .mega-menu, .mega-menu:hover { opacity: 1; visibility: visible; pointer-events: auto; }
+  .mega-menu { position: fixed; top: 100px; left: 50%; transform: translateX(-50%); width: 900px; max-width: 90vw; background: white; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); padding: 2rem; opacity: 0; visibility: hidden; transition: opacity 0.6s ease, visibility 0.6s ease; pointer-events: none; z-index: 9999; }
+  .mega-menu-inner { display: flex; flex-direction: column; gap: 2rem; width: 100%; }
+  .mega-columns { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; }
+  .mega-column { display: flex; flex-direction: column; }
+  .mega-column h4 { margin-bottom: 1rem; font-size: 1.1rem; font-weight: bold; color: #222; }
+  .mega-column a { text-decoration: none; color: #222; padding: 0.3rem 0; transition: color 0.2s; border-bottom: 1px solid #eee; }
+  .mega-column a:hover { color: #CC0022; border-color: #CC0022; }
+  .mega-footer { width: 100%; text-align: center; margin-top: 2rem; }
+  .mega-contact-btn { display: inline-block; padding: 0.75rem 1.5rem; background-color: #CC0022; color: white !important; font-weight: 500; border-radius: 8px; text-decoration: none; transition: background-color 0.3s ease; }
+  .mega-contact-btn:hover { background-color: #a8001b; }
+  .navbar-socials { margin-left: auto !important; display: flex !important; align-items: center !important; gap: 1rem; }
+  .navbar-socials a { color: #222; font-size: 1.4rem; transition: color 0.3s; }
+  .navbar-socials a:hover { color: #CC0022; }
+  .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 4px; padding: 8px; z-index: 1001; }
+  .hamburger span { width: 25px; height: 3px; background-color: #222; transition: all 0.3s ease; border-radius: 2px; }
+  .hamburger.active span { background-color: #fff; }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+  .mobile-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; transition: opacity 0.3s ease; }
+  .mobile-overlay.active { display: block; opacity: 1; }
+  .mobile-submenu { display: none; flex-direction: column; padding: 0; margin: 0; list-style: none; overflow: hidden; max-height: 0; transition: max-height 0.35s ease; }
+  .mobile-submenu.open { display: flex; max-height: 500px; }
+  .mobile-submenu li { border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .mobile-submenu li a { display: block; padding: 0.75rem 0 0.75rem 1.2rem !important; font-size: 14px !important; font-weight: 500 !important; color: rgba(255,255,255,0.85) !important; text-decoration: none; }
+  .mobile-submenu li a:hover { color: #fff !important; opacity: 1 !important; }
+  .diensten-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; cursor: pointer; }
+  .diensten-toggle .toggle-arrow { transition: transform 0.3s ease; font-size: 12px; color: rgba(255,255,255,0.8); }
+  .diensten-toggle.open .toggle-arrow { transform: rotate(180deg); }
+  .fab-container { position: fixed; left: 20px; bottom: 20px; display: flex; flex-direction: column; gap: 15px; z-index: 997; transition: opacity 0.3s ease, visibility 0.3s ease; }
+  .fab-container.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .fab-button { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+  .fab-button:hover { transform: scale(1.1); box-shadow: 0 6px 16px rgba(0,0,0,0.4); }
+  .fab-button i { font-size: 24px; }
+  .fab-quote { background: #0088cc; }
+  .fab-phone { background: #0088cc; }
+  .fab-whatsapp { background: #25D366; }
+  @media (max-width: 991px) {
+    .custom-navbar { padding: 1rem 1.5rem; }
+    .custom-navbar.menu-open { background: #CC0022; }
+    .navbar-content { display: flex; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: nowrap; }
+    .mobile-logo { display: block !important; flex-shrink: 0; z-index: 1001; }
+    .mobile-logo img { height: 65px; width: auto; display: block; }
+    .mobile-logo.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .desktop-logo-container { display: none !important; }
+    .hamburger { display: flex; flex-shrink: 0; margin-left: auto; }
+    .navbar-socials { display: none !important; }
+    .nav-menu { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: #CC0022; flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start !important; padding: 5rem 2rem 2rem 2rem !important; gap: 0 !important; box-shadow: -5px 0 15px rgba(0,0,0,0.3); transition: right 0.3s ease; overflow-y: auto; z-index: 1000; }
+    .nav-menu.active { right: 0; }
+    .nav-item { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.2); }
+    .nav-item a { display: block; padding: 1rem 0; font-size: 16px; width: 100%; color: #fff !important; font-weight: 600; }
+    .nav-item a:hover { color: #fff !important; opacity: 0.8; }
+    .mega-dropdown .mega-menu { display: none !important; }
+    .mobile-submenu.open { display: flex; }
+  }
+  @media (max-width: 480px) {
+    .custom-navbar { padding: 0.75rem 1rem; }
+    .mobile-logo img { height: 55px; }
+    .nav-menu { width: 100%; right: -100%; }
+    .hamburger span { width: 22px; }
+  }
+  @media (max-width: 768px) {
+    .fab-container { left: 15px; bottom: 15px; gap: 12px; }
+    .fab-button { width: 55px; height: 55px; }
+    .fab-button i { font-size: 22px; }
+  }
+</style>
+
+<nav class="custom-navbar" id="customNavbar">
+  <div class="navbar-content">
+    <a href="index.html" class="mobile-logo" id="mobileLogo">
+      <img src="images/logo.png" alt="Beuker Logo" />
+    </a>
+    <div class="desktop-logo-container">
+      <a href="index.html">
+        <img src="images/logo.png" alt="Beuker Logo" style="height:56px;width:auto;" />
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item"><a href="index.html">Home</a></li>
+      <li class="nav-item mega-dropdown" id="megaDropdown">
+        <a href="diensten.html" class="diensten-desktop-link">Diensten</a>
+        <div class="diensten-toggle" id="dienstenToggle">
+          <span>Diensten</span>
+          <i class="fas fa-chevron-down toggle-arrow"></i>
+        </div>
+        <div class="mega-menu">
+          <div class="mega-menu-inner">
+            <div class="mega-columns">
+              <div class="mega-column">
+                <h4><a href="loodgieterswerk.html">Loodgieterswerk</a></h4>
+                <a href="loodgieterswerk.html#installatie">Installatie</a>
+                <a href="loodgieterswerk.html#ontstopping">Ontstopping</a>
+                <a href="loodgieterswerk.html#reparatie">Reparatie/storing</a>
+              </div>
+              <div class="mega-column">
+                <h4><a href="dakwerk.html">Dakwerk</a></h4>
+                <a href="dakwerk.html#plat-dak">Plat dak</a>
+                <a href="dakwerk.html#hellend-dak">Hellend dak</a>
+                <a href="dakwerk.html#schoorsteenrenovatie">Schoorsteenrenovatie</a>
+                <a href="dakwerk.html#dakinspectie">Dakinspectie</a>
+                <a href="dakwerk.html#dakisolatie">Dakisolatie</a>
+              </div>
+              <div class="mega-column">
+                <h4><a href="zinkwerk.html">Zinkwerk</a></h4>
+                <a href="zinkwerk.html#bekleding">Bekleding</a>
+                <a href="zinkwerk.html#dakgoten">Dakgoten</a>
+                <a href="zinkwerk.html#hwa">Hwa</a>
+              </div>
+              <div class="mega-column">
+                <h4><a href="bouw-en-renovatie.html">Bouw &amp; renovatie</a></h4>
+                <a href="bouw-en-renovatie.html#verbouw">(Ver)bouw</a>
+                <a href="bouw-en-renovatie.html#renovatie">Renovatie</a>
+                <a href="bouw-en-renovatie.html#vloerverwarming">Vloerverwarming</a>
+                <a href="bouw-en-renovatie.html#dakkapel">Dakkapel</a>
+                <a href="bouw-en-renovatie.html#kozijnen">Kozijnen</a>
+              </div>
+              <div class="mega-column">
+                <h4><a href="noodreparaties.html">Noodreparatie</a></h4>
+              </div>
+            </div>
+            <div class="mega-footer">
+              <a href="contact.html" class="mega-contact-btn">Werkzaamheden niet vermeld? Neem contact op voor de mogelijkheden.</a>
+            </div>
+          </div>
+        </div>
+        <ul class="mobile-submenu" id="mobileSubmenu">
+          <li><a href="loodgieterswerk.html">Loodgieterswerk</a></li>
+          <li><a href="dakwerk.html">Dakwerk</a></li>
+          <li><a href="zinkwerk.html">Zinkwerk</a></li>
+          <li><a href="bouw-en-renovatie.html">Bouw &amp; Renovatie</a></li>
+          <li><a href="noodreparaties.html">Noodreparatie</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a href="projecten.html">Projecten</a></li>
+      <li class="nav-item"><a href="over-ons.html">Over Ons</a></li>
+      <li class="nav-item"><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="navbar-socials">
+      <a href="https://www.facebook.com/share/1M5A23jy36/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/beukerbouweninstallatie?igsh=MW5qcHQ1NWpueDIycg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</nav>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="fab-container" id="fabContainer">
+  <a href="contact.html" class="fab-button fab-quote" aria-label="Vraag offerte aan"><i class="fas fa-file-alt"></i></a>
+  <a href="tel:+31613871455" class="fab-button fab-phone" aria-label="Bel ons"><i class="fas fa-phone"></i></a>
+  <a href="https://wa.me/31613871455" class="fab-button fab-whatsapp" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+  const fabContainer = document.getElementById('fabContainer');
+  const mobileLogo = document.getElementById('mobileLogo');
+  const customNavbar = document.getElementById('customNavbar');
+  const megaDropdown = document.getElementById('megaDropdown');
+  const megaMenu = megaDropdown.querySelector('.mega-menu');
+  const dienstenToggle = document.getElementById('dienstenToggle');
+  const mobileSubmenu = document.getElementById('mobileSubmenu');
+  const dienstenDesktopLink = megaDropdown.querySelector('.diensten-desktop-link');
+  let timeout;
+  function applyDienstenMode() {
+    if (window.innerWidth <= 991) { dienstenDesktopLink.style.display = 'none'; dienstenToggle.style.display = 'flex'; }
+    else { dienstenDesktopLink.style.display = 'inline-block'; dienstenToggle.style.display = 'none'; mobileSubmenu.classList.remove('open'); dienstenToggle.classList.remove('open'); }
+  }
+  applyDienstenMode();
+  window.addEventListener('resize', applyDienstenMode);
+  dienstenToggle.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = mobileSubmenu.classList.toggle('open'); dienstenToggle.classList.toggle('open', isOpen); });
+  hamburger.addEventListener('click', () => {
+    const isActive = hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active'); mobileOverlay.classList.toggle('active');
+    if (isActive) { mobileLogo.classList.add('hidden'); customNavbar.classList.add('menu-open'); fabContainer.classList.add('hidden'); }
+    else { mobileLogo.classList.remove('hidden'); customNavbar.classList.remove('menu-open'); fabContainer.classList.remove('hidden'); mobileSubmenu.classList.remove('open'); dienstenToggle.classList.remove('open'); }
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+  });
+  mobileOverlay.addEventListener('click', () => {
+    hamburger.classList.remove('active'); navMenu.classList.remove('active'); mobileOverlay.classList.remove('active');
+    mobileLogo.classList.remove('hidden'); customNavbar.classList.remove('menu-open'); fabContainer.classList.remove('hidden');
+    mobileSubmenu.classList.remove('open'); dienstenToggle.classList.remove('open'); document.body.style.overflow = '';
+  });
+  document.querySelectorAll('.nav-item > a, .mobile-submenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 991) {
+        hamburger.classList.remove('active'); navMenu.classList.remove('active'); mobileOverlay.classList.remove('active');
+        mobileLogo.classList.remove('hidden'); customNavbar.classList.remove('menu-open'); fabContainer.classList.remove('hidden');
+        mobileSubmenu.classList.remove('open'); dienstenToggle.classList.remove('open'); document.body.style.overflow = '';
+      }
+    });
+  });
+  if (window.innerWidth > 991) {
+    megaDropdown.addEventListener('mouseenter', () => { clearTimeout(timeout); megaMenu.style.opacity='1'; megaMenu.style.visibility='visible'; megaMenu.style.pointerEvents='auto'; });
+    megaDropdown.addEventListener('mouseleave', () => { timeout = setTimeout(() => { megaMenu.style.opacity='0'; megaMenu.style.visibility='hidden'; megaMenu.style.pointerEvents='none'; }, 300); });
+    megaMenu.addEventListener('mouseenter', () => { clearTimeout(timeout); });
+    megaMenu.addEventListener('mouseleave', () => { timeout = setTimeout(() => { megaMenu.style.opacity='0'; megaMenu.style.visibility='hidden'; megaMenu.style.pointerEvents='none'; }, 300); });
+  }
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 991) { hamburger.classList.remove('active'); navMenu.classList.remove('active'); mobileOverlay.classList.remove('active'); mobileLogo.classList.remove('hidden'); customNavbar.classList.remove('menu-open'); fabContainer.classList.remove('hidden'); document.body.style.overflow = ''; }
+  });
+</script>
+
+<!-- ===== HERO ===== -->
+<style>
+  .slider {
+    position: relative;
+    width: 100%;
+    min-height: 560px;
+    background-image: url('images/bouw-en-renovatie-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 2rem;
+  }
+  .slider .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.58);
+  }
+  .text-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 860px;
+  }
+  .company-name {
+    color: #CC0022;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+  .text-container h1 {
+    color: white;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .hero-subtext {
+    color: rgba(255,255,255,0.88);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #CC0022;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(204,0,34,0.4);
+  }
+  .hero-cta-btn:hover { background: #a8001b; transform: translateY(-2px); }
+  @media (max-width: 600px) {
+    .slider { min-height: auto; padding: 4rem 1.5rem; }
+  }
+</style>
+
+<div class="slider">
+  <div class="overlay"></div>
+  <div class="text-container">
+    <div class="company-name">Beuker Bouw &amp; Installatie</div>
+    <h1>Waarom kiezen voor Beuker Bouw &amp; Installatie?</h1>
+    <p class="hero-subtext">Wij zijn een betrouwbare dakwerkspecialist, toegewijd aan kwaliteit, duurzaamheid en vakmanschap. Van nieuwe installaties tot reparaties, wij bieden betrouwbare oplossingen op maat.</p>
+    <a href="contact.html" class="hero-cta-btn">Vrijblijvende offerte aanvragen</a>
+  </div>
+</div>
+
+<!-- ===== ABOUT SECTION ===== -->
+<style>
+  .about-section {
+    background: #f8f9fa;
+    padding: 5rem 2rem;
+    font-family: 'Nunito', sans-serif;
+  }
+  .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .about-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .about-header h2 {
+    font-size: 2.8rem;
+    color: #222;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  .header-accent {
+    width: 80px;
+    height: 4px;
+    background: #CC0022;
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+  .founder-story {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 4rem;
+  }
+  .founder-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .founder-text h3 {
+    font-size: 2rem;
+    color: #CC0022;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  .founder-text p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+  }
+  .founder-highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-radius: 10px;
+    border-left: 4px solid #CC0022;
+  }
+  .highlight-item i { font-size: 2.5rem; color: #CC0022; }
+  .highlight-item h4 { font-size: 1.5rem; color: #222; margin: 0 0 0.25rem 0; font-weight: 700; }
+  .highlight-item p { margin: 0; color: #666; font-size: 0.95rem; }
+  .expertise-section { margin-bottom: 4rem; }
+  .expertise-section h3 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #222;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  .expertise-intro {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+  .value-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .value-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  .value-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(204,0,34,0.15); }
+  .value-icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #CC0022 0%, #a8001b 100%);
+    border-radius: 50%;
+    color: white;
+    font-size: 2rem;
+    margin: 0 auto 1.5rem;
+  }
+  .value-card h4 { font-size: 1.5rem; color: #222; margin-bottom: 1rem; font-weight: 700; }
+  .value-card p { color: #666; line-height: 1.7; font-size: 1rem; }
+  .approach-section {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 4rem;
+  }
+  .approach-section h3 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #222;
+    margin-bottom: 3rem;
+    font-weight: 700;
+  }
+  .approach-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .approach-step {
+    flex: 1;
+    min-width: 200px;
+    max-width: 280px;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: #f9f9f9;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  .approach-step:hover { background: #CC0022; color: white; }
+  .approach-step:hover .step-icon { background: white; color: #CC0022; }
+  .approach-step:hover h4, .approach-step:hover p { color: white; }
+  .step-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #CC0022;
+    color: white;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 auto 1rem;
+    transition: all 0.3s ease;
+  }
+  .approach-step h4 { font-size: 1.2rem; color: #222; margin-bottom: 0.75rem; font-weight: 700; transition: all 0.3s ease; }
+  .approach-step p { color: #666; font-size: 0.95rem; line-height: 1.5; margin: 0; transition: all 0.3s ease; }
+  .approach-arrow { font-size: 2rem; color: #CC0022; font-weight: 700; }
+  .about-cta {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #CC0022 0%, #a8001b 100%);
+    border-radius: 12px;
+    color: white;
+  }
+  .about-cta h3 { font-size: 2.2rem; margin-bottom: 1rem; font-weight: 700; }
+  .about-cta p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95; }
+  .about-cta-btn {
+    display: inline-block;
+    padding: 1.25rem 3rem;
+    background: white;
+    color: #CC0022;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .about-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.3); }
+  @media (max-width: 768px) {
+    .about-section { padding: 3rem 1.5rem; }
+    .about-header h2 { font-size: 2rem; }
+    .founder-story { padding: 2rem 1.5rem; }
+    .founder-content { grid-template-columns: 1fr; gap: 2rem; }
+    .founder-text h3 { font-size: 1.6rem; }
+    .expertise-section h3, .approach-section h3, .about-cta h3 { font-size: 1.8rem; }
+    .value-cards { grid-template-columns: 1fr; }
+    .approach-steps { flex-direction: column; }
+    .approach-arrow { transform: rotate(90deg); }
+    .approach-step { max-width: 100%; }
+    .about-cta { padding: 3rem 1.5rem; }
+  }
+</style>
+
+<section class="about-section">
+  <div class="about-container">
+    <div class="about-header">
+      <h2>Over Beuker Bouw &amp; Installatie</h2>
+      <div class="header-accent"></div>
+    </div>
+    <div class="founder-story">
+      <div class="founder-content">
+        <div class="founder-text">
+          <h3>Passie en Vakmanschap</h3>
+          <p>Met 15 jaar werkervaring en een flinke dosis passie werd Beuker Bouw en Installatie opgericht door Sander Beuker. Sander staat voor vakmanschap en duurzaamheid. Door klanten wordt hij omschreven als een prettig, betrouwbaar persoon, die meedenkt en écht eerlijk advies geeft. Hij ziet ieder project als een uitdaging om tot het beste eindresultaat te brengen en is verknocht aan ouderwets vakmanschap, wat bijvoorbeeld vereist is bij werk aan monumentale panden.</p>
+        </div>
+        <div class="founder-highlight">
+          <div class="highlight-item">
+            <i class="fas fa-award"></i>
+            <div>
+              <h4>15+ Jaar</h4>
+              <p>Werkervaring</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <i class="fas fa-users"></i>
+            <div>
+              <h4>Vast Team</h4>
+              <p>Vakmannen</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="expertise-section">
+      <h3>Onze Expertise</h3>
+      <p class="expertise-intro">Beuker Bouw en Installatie is specialist in loodgieterswerk, dak- en zinkwerk én uw uitvoerende en begeleidende partner in bouw en renovatieprojecten.</p>
+      <div class="value-cards">
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-handshake"></i></div>
+          <h4>Totaalpakket</h4>
+          <p>Sander werkt met een vast team aan vakmannen en wanneer er binnen het door ons aangenomen project werkzaamheden zijn waarin wij zelf niet gespecialiseerd zijn, werken we samen met betrouwbare specialisten uit ons eigen netwerk.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-check-circle"></i></div>
+          <h4>Kwaliteit &amp; Duurzaamheid</h4>
+          <p>In ons vak is werken met de juiste materialen van groot belang voor het eindresultaat en de duurzaamheid hiervan. U mag er bij ons vanuit gaan dat we enkel werken met materialen van hoge kwaliteit en dat wij onszelf hierover blijven bijscholen.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-comments"></i></div>
+          <h4>Persoonlijk Advies</h4>
+          <p>Wanneer u contact met ons opneemt komen wij graag bij u langs om uw wensen en situatie zo goed mogelijk in kaart te brengen. We denken actief met u mee over de beste oplossing en geven deskundig en eerlijk advies.</p>
+        </div>
+      </div>
+    </div>
+    <div class="approach-section">
+      <h3>Zo Werken Wij</h3>
+      <div class="approach-steps">
+        <div class="approach-step">
+          <div class="step-icon">1</div>
+          <h4>Persoonlijk Contact</h4>
+          <p>Wij komen bij u langs om uw wensen en situatie in kaart te brengen</p>
+        </div>
+        <div class="approach-arrow">→</div>
+        <div class="approach-step">
+          <div class="step-icon">2</div>
+          <h4>Deskundig Advies</h4>
+          <p>We denken actief mee en geven eerlijk, deskundig advies</p>
+        </div>
+        <div class="approach-arrow">→</div>
+        <div class="approach-step">
+          <div class="step-icon">3</div>
+          <h4>Vrijblijvende Offerte</h4>
+          <p>U ontvangt een op maat gemaakte offerte, zodat u precies weet waar u aan toe bent</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-cta">
+      <h3>Klaar om samen te werken?</h3>
+      <p>Neem vrijblijvend contact met ons op voor een persoonlijk gesprek</p>
+      <a href="contact.html" class="about-cta-btn">Neem Contact Op</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<style>
+  .site-footer { background: #1a1a1a; padding: 3rem 2rem 2rem; text-align: center; }
+  .footer-logo { margin: 0 auto 1.5rem; }
+  .footer-logo img { max-height: 70px; width: auto; margin: 0 auto; }
+  .footer-copyright { color: rgba(255,255,255,0.55); font-size: 0.88rem; }
+</style>
+
+<footer class="site-footer">
+  <div class="footer-logo">
+    <img src="images/logo-white.png" alt="Beuker Bouw &amp; Installatie" onerror="this.src='images/logo.png'">
+  </div>
+  <p class="footer-copyright">© Copyright Beuker Bouw &amp; Installatie. Alle rechten voorbehouden.</p>
+</footer>
+
+</body>
+</html>

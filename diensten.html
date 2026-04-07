@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diensten — Beuker Bouw & Installatie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; color: #222; overflow-x: hidden; background: #fff; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR (identical to homepage) ===== -->
+<style>
+  .custom-navbar {
+    background: #fff;
+    padding: 1rem 2rem;
+    font-family: 'Nunito', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: background 0.3s ease;
+  }
+  .navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+  }
+  .mobile-logo { display: none; transition: opacity 0.3s ease, visibility 0.3s ease; }
+  .mobile-logo img { height: 50px; width: auto; }
+  .desktop-logo-container { display: flex; }
+  .nav-menu {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1 1 auto !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    list-style: none !important;
+    gap: 2rem;
+  }
+  .nav-logo { display: flex !important; align-items: center !important; margin: 0 !important; padding: 0 !important; margin-right: 6px !important; }
+  .nav-logo img { height: 56px; width: auto; display: block; object-fit: contain; }
+  .nav-item { margin: 0 !important; padding: 0 !important; position: relative; }
+  .nav-item a { text-decoration: none; color: #222; font-weight: 500; padding: 0.5rem 0; display: inline-block; font-size: 17px; transition: color 0.3s; }
+  .nav-item a:hover { color: #CC0022; }
+  .mega-dropdown:hover .mega-menu, .mega-menu:hover { opacity: 1; visibility: visible; pointer-events: auto; }
+  .mega-menu {
+    position: fixed; top: 100px; left: 50%; transform: translateX(-50%);
+    width: 900px; max-width: 90vw; background: white; border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); padding: 2rem;
+    opacity: 0; visibility: hidden; transition: opacity 0.6s ease, visibility 0.6s ease;
+    pointer-events: none; z-index: 9999;
+  }
+  .mega-menu-inner { display: flex; flex-direction: column; gap: 2rem; width: 100%; }
+  .mega-columns { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; }
+  .mega-column { display: flex; flex-direction: column; }
+  .mega-column h4 { margin-bottom: 1rem; font-size: 1.1rem; font-weight: bold; color: #222; }
+  .mega-column a { text-decoration: none; color: #222; padding: 0.3rem 0; transition: color 0.2s; border-bottom: 1px solid #eee; }
+  .mega-column a:hover { color: #CC0022; border-color: #CC0022; }
+  .mega-footer { width: 100%; text-align: center; margin-top: 2rem; }
+  .mega-contact-btn { display: inline-block; padding: 0.75rem 1.5rem; background-color: #CC0022; color: white !important; font-weight: 500; border-radius: 8px; text-decoration: none; transition: background-color 0.3s ease; }
+  .mega-contact-btn:hover { background-color: #a8001b; }
+  .navbar-socials { margin-left: auto !important; display: flex !important; align-items: center !important; gap: 1rem; }
+  .navbar-socials a { color: #222; font-size: 1.4rem; transition: color 0.3s; }
+  .navbar-socials a:hover { color: #CC0022; }
+  .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 4px; padding: 8px; z-index: 1001; }
+  .hamburger span { width: 25px; height: 3px; background-color: #222; transition: all 0.3s ease; border-radius: 2px; }
+  .hamburger.active span { background-color: #fff; }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+  .mobile-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; transition: opacity 0.3s ease; }
+  .mobile-overlay.active { display: block; opacity: 1; }
+  .mobile-submenu { display: none; flex-direction: column; padding: 0; margin: 0; list-style: none; overflow: hidden; max-height: 0; transition: max-height 0.35s ease; }
+  .mobile-submenu.open { display: flex; max-height: 500px; }
+  .mobile-submenu li { border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .mobile-submenu li a { display: block; padding: 0.75rem 0 0.75rem 1.2rem !important; font-size: 14px !important; font-weight: 500 !important; color: rgba(255,255,255,0.85) !important; text-decoration: none; }
+  .mobile-submenu li a:hover { color: #fff !important; opacity: 1 !important; }
+  .diensten-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; cursor: pointer; }
+  .diensten-toggle .toggle-arrow { transition: transform 0.3s ease; font-size: 12px; color: rgba(255,255,255,0.8); }
+  .diensten-toggle.open .toggle-arrow { transform: rotate(180deg); }
+  .fab-container { position: fixed; left: 20px; bottom: 20px; display: flex; flex-direction: column; gap: 15px; z-index: 997; transition: opacity 0.3s ease, visibility 0.3s ease; }
+  .fab-container.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .fab-button { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+  .fab-button:hover { transform: scale(1.1); box-shadow: 0 6px 16px rgba(0,0,0,0.4); }
+  .fab-button i { font-size: 24px; }
+  .fab-quote { background: #0088cc; }
+  .fab-phone { background: #0088cc; }
+  .fab-whatsapp { background: #25D366; }
+  @media (max-width: 991px) {
+    .custom-navbar { padding: 1rem 1.5rem; }
+    .custom-navbar.menu-open { background: #CC0022; }
+    .navbar-content { display: flex; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: nowrap; }
+    .mobile-logo { display: block !important; flex-shrink: 0; z-index: 1001; }
+    .mobile-logo img { height: 65px; width: auto; display: block; }
+    .mobile-logo.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .desktop-logo-container { display: none !important; }
+    .nav-logo { display: none !important; }
+    .hamburger { display: flex; flex-shrink: 0; margin-left: auto; }
+    .navbar-socials { display: none !important; }
+    .nav-menu { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: #CC0022; flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start !important; padding: 5rem 2rem 2rem 2rem !important; gap: 0 !important; box-shadow: -5px 0 15px rgba(0,0,0,0.3); transition: right 0.3s ease; overflow-y: auto; z-index: 1000; }
+    .nav-menu.active { right: 0; }
+    .nav-item { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.2); }
+    .nav-item a { display: block; padding: 1rem 0; font-size: 16px; width: 100%; color: #fff !important; font-weight: 600; }
+    .nav-item a:hover { color: #fff !important; opacity: 0.8; }
+    .mega-dropdown .mega-menu { display: none !important; }
+    .mobile-submenu.open { display: flex; }
+  }
+  @media (max-width: 480px) {
+    .custom-navbar { padding: 0.75rem 1rem; }
+    .mobile-logo img { height: 55px; }
+    .nav-menu { width: 100%; right: -100%; }
+    .hamburger span { width: 22px; }
+  }
+  @media (max-width: 768px) {
+    .fab-container { left: 15px; bottom: 15px; gap: 12px; }
+    .fab-button { width: 55px; height: 55px; }
+    .fab-button i { font-size: 22px; }
+  }
+</style>
+
+<nav class="custom-navbar" id="customNavbar">
+  <div class="navbar-content">
+    <a href="index.html" class="mobile-logo" id="mobileLogo">
+      <img src="images/logo.png" alt="Beuker Logo" />
+    </a>
+    <div class="desktop-logo-container">
+      <a href="index.html">
+        <div class="navbar-logo">
+          <img src="images/logo.png" alt="Beuker Logo" style="height:56px;width:auto;" />
+        </div>
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item"><a href="index.html">Home</a></li>
+      <li class="nav-item mega-dropdown" id="megaDropdown">
+        <a href="diensten.html" class="diensten-desktop-link">Diensten</a>
+        <div class="diensten-toggle" id="dienstenToggle">
+          <span>Diensten</span>
+          <i class="fas fa-chevron-down toggle-arrow"></i>
+        </div>
+        <div class="mega-menu">
+          <div class="mega-menu-inner">
+            <div class="mega-columns">
+              <div class="mega-column">
+                <h4><a href="loodgieterswerk.html">Loodgieterswerk</a></h4>
+                <a href="loodgieterswerk.html#installatie">Installatie</a>
+                <a href="loodgieterswerk.html#ontstopping">Ontstopping</a>
+                <a href="loodgieterswerk.html#reparatie">Reparatie/storing</a>
+              </div>
+              <div class="mega-column">
+                <h4><a href="dakwerk.html">Dakwerk</a></h4>
+                <a href="dakwerk.html#plat-dak">Plat dak</a>
+                <a href="dakwerk.html#hellend-dak">Hellend dak</a>
+                <a href="dakwerk.html#schoorsteenrenovatie">Schoorsteenrenovatie</a>
+                <a href="dakwerk.html#dakinspectie">Dakinspectie</a>
+                <a href="dakwerk.html#dakisolatie">Dakisolatie</a>
+              </div>
+              <div class="mega-column">
+                <h4><a href="zinkwerk.html">Zinkwerk</a></h4>
+                <a href="zinkwerk.html#bekleding">Bekleding</a>
+                <a href="zinkwerk.html#dakgoten">Dakgoten</a>
+                <a href="zinkwerk.html#hwa">Hwa</a>
+              </div>
+              <div class="mega-column">
+                <h4><a href="bouw-en-renovatie.html">Bouw &amp; renovatie</a></h4>
+                <a href="bouw-en-renovatie.html#verbouw">(Ver)bouw</a>
+                <a href="bouw-en-renovatie.html#renovatie">Renovatie</a>
+                <a href="bouw-en-renovatie.html#vloerverwarming">Vloerverwarming</a>
+                <a href="bouw-en-renovatie.html#dakkapel">Dakkapel</a>
+                <a href="bouw-en-renovatie.html#kozijnen">Kozijnen</a>
+              </div>
+              <div class="mega-column">
+                <h4><a href="noodreparaties.html">Noodreparatie</a></h4>
+              </div>
+            </div>
+            <div class="mega-footer">
+              <a href="contact.html" class="mega-contact-btn">
+                Werkzaamheden niet vermeld? Neem contact op voor de mogelijkheden.
+              </a>
+            </div>
+          </div>
+        </div>
+        <ul class="mobile-submenu" id="mobileSubmenu">
+          <li><a href="loodgieterswerk.html">Loodgieterswerk</a></li>
+          <li><a href="dakwerk.html">Dakwerk</a></li>
+          <li><a href="zinkwerk.html">Zinkwerk</a></li>
+          <li><a href="bouw-en-renovatie.html">Bouw &amp; Renovatie</a></li>
+          <li><a href="noodreparaties.html">Noodreparatie</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a href="projecten.html">Projecten</a></li>
+      <li class="nav-item"><a href="over-ons.html">Over Ons</a></li>
+      <li class="nav-item"><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="navbar-socials">
+      <a href="https://www.facebook.com/share/1M5A23jy36/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/beukerbouweninstallatie?igsh=MW5qcHQ1NWpueDIycg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<div class="fab-container" id="fabContainer">
+  <a href="contact.html" class="fab-button fab-quote" aria-label="Vraag offerte aan"><i class="fas fa-file-alt"></i></a>
+  <a href="tel:+31613871455" class="fab-button fab-phone" aria-label="Bel ons"><i class="fas fa-phone"></i></a>
+  <a href="https://wa.me/31613871455" class="fab-button fab-whatsapp" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+  const fabContainer = document.getElementById('fabContainer');
+  const mobileLogo = document.getElementById('mobileLogo');
+  const customNavbar = document.getElementById('customNavbar');
+  const megaDropdown = document.getElementById('megaDropdown');
+  const megaMenu = megaDropdown.querySelector('.mega-menu');
+  const dienstenToggle = document.getElementById('dienstenToggle');
+  const mobileSubmenu = document.getElementById('mobileSubmenu');
+  const dienstenDesktopLink = megaDropdown.querySelector('.diensten-desktop-link');
+  let timeout;
+  function applyDienstenMode() {
+    if (window.innerWidth <= 991) {
+      dienstenDesktopLink.style.display = 'none';
+      dienstenToggle.style.display = 'flex';
+    } else {
+      dienstenDesktopLink.style.display = 'inline-block';
+      dienstenToggle.style.display = 'none';
+      mobileSubmenu.classList.remove('open');
+      dienstenToggle.classList.remove('open');
+    }
+  }
+  applyDienstenMode();
+  window.addEventListener('resize', applyDienstenMode);
+  dienstenToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = mobileSubmenu.classList.toggle('open');
+    dienstenToggle.classList.toggle('open', isOpen);
+  });
+  hamburger.addEventListener('click', () => {
+    const isActive = hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    mobileOverlay.classList.toggle('active');
+    if (isActive) {
+      mobileLogo.classList.add('hidden');
+      customNavbar.classList.add('menu-open');
+      fabContainer.classList.add('hidden');
+    } else {
+      mobileLogo.classList.remove('hidden');
+      customNavbar.classList.remove('menu-open');
+      fabContainer.classList.remove('hidden');
+      mobileSubmenu.classList.remove('open');
+      dienstenToggle.classList.remove('open');
+    }
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+  });
+  mobileOverlay.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    mobileOverlay.classList.remove('active');
+    mobileLogo.classList.remove('hidden');
+    customNavbar.classList.remove('menu-open');
+    fabContainer.classList.remove('hidden');
+    mobileSubmenu.classList.remove('open');
+    dienstenToggle.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+  document.querySelectorAll('.nav-item > a, .mobile-submenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 991) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+        mobileLogo.classList.remove('hidden');
+        customNavbar.classList.remove('menu-open');
+        fabContainer.classList.remove('hidden');
+        mobileSubmenu.classList.remove('open');
+        dienstenToggle.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+  if (window.innerWidth > 991) {
+    megaDropdown.addEventListener('mouseenter', () => { clearTimeout(timeout); megaMenu.style.opacity='1'; megaMenu.style.visibility='visible'; megaMenu.style.pointerEvents='auto'; });
+    megaDropdown.addEventListener('mouseleave', () => { timeout = setTimeout(() => { megaMenu.style.opacity='0'; megaMenu.style.visibility='hidden'; megaMenu.style.pointerEvents='none'; }, 300); });
+    megaMenu.addEventListener('mouseenter', () => { clearTimeout(timeout); });
+    megaMenu.addEventListener('mouseleave', () => { timeout = setTimeout(() => { megaMenu.style.opacity='0'; megaMenu.style.visibility='hidden'; megaMenu.style.pointerEvents='none'; }, 300); });
+  }
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 991) {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+      mobileOverlay.classList.remove('active');
+      mobileLogo.classList.remove('hidden');
+      customNavbar.classList.remove('menu-open');
+      fabContainer.classList.remove('hidden');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+
+<!-- ===== HERO ===== -->
+<style>
+  .diensten-hero {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    background-image: url('images/diensten-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .diensten-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+  }
+  .diensten-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+  }
+  .diensten-hero-content .company-name {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+  .diensten-hero-content h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .diensten-hero-content p {
+    font-size: 1.05rem;
+    font-weight: 400;
+    opacity: 0.9;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  @media (max-width: 768px) {
+    .diensten-hero { height: 320px; }
+  }
+</style>
+
+<div class="diensten-hero">
+  <div class="diensten-hero-content">
+    <div class="company-name">Beuker Bouw &amp; Installatie</div>
+    <h1>Onze Diensten</h1>
+    <p>Wij bieden hoogwaardige diensten aan met focus op kwaliteit, betrouwbaarheid en vakmanschap.</p>
+  </div>
+</div>
+
+<!-- ===== DIENSTEN SECTIE ===== -->
+<style>
+  .diensten-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+  .dienst {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 6rem;
+  }
+  .dienst:last-child { margin-bottom: 0; }
+  .dienst.reverse .dienst-img { order: 2; }
+  .dienst.reverse .dienst-text { order: 1; }
+  .dienst-img {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+  .dienst-img img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .dienst:hover .dienst-img img { transform: scale(1.03); }
+  .dienst-text { padding: 1rem 0; }
+  .dienst-text .dienst-label {
+    display: inline-block;
+    background: #CC0022;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.25rem;
+  }
+  .dienst-text h3 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: #191919;
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+  }
+  .dienst-text p {
+    color: #555;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  .dienst-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 2rem;
+    background: #CC0022;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  .dienst-link:hover {
+    background: #a8001b;
+    transform: translateY(-2px);
+  }
+  .dienst-link i { font-size: 0.85rem; }
+
+  /* Divider between items */
+  .dienst-divider {
+    border: none;
+    border-top: 1px solid #ececec;
+    margin-bottom: 6rem;
+  }
+
+  @media (max-width: 900px) {
+    .dienst {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    .dienst.reverse .dienst-img { order: 0; }
+    .dienst.reverse .dienst-text { order: 0; }
+    .dienst-img img { height: 280px; }
+    .dienst-divider { margin-bottom: 4rem; }
+  }
+  @media (max-width: 480px) {
+    .diensten-container { padding: 3rem 1.25rem; }
+    .dienst-img img { height: 220px; }
+  }
+</style>
+
+<section class="diensten-container">
+
+  <!-- Loodgieterswerk -->
+  <div class="dienst">
+    <div class="dienst-img">
+      <img src="images/service-loodgieterswerk.jpg" alt="Loodgieterswerk">
+    </div>
+    <div class="dienst-text">
+      <span class="dienst-label">Dienst</span>
+      <h3>Loodgieterswerk</h3>
+      <p>Professioneel loodgieterswerk voor woningen en bedrijven. Van kleine reparaties tot volledige installaties, wij zorgen voor een snelle en betrouwbare service met hoge kwaliteit materialen en vakmanschap.</p>
+      <a href="loodgieterswerk.html" class="dienst-link">Bekijk dienst <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+  <hr class="dienst-divider">
+
+  <!-- Dakwerk -->
+  <div class="dienst reverse">
+    <div class="dienst-img">
+      <img src="images/project-2.jpg" alt="Dakwerk">
+    </div>
+    <div class="dienst-text">
+      <span class="dienst-label">Dienst</span>
+      <h3>Dakwerk</h3>
+      <p>Betrouwbare dakbedekking en reparaties, inclusief isolatie en waterdichting, uitgevoerd door ervaren professionals met oog voor detail.</p>
+      <a href="dakwerk.html" class="dienst-link">Bekijk dienst <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+  <hr class="dienst-divider">
+
+  <!-- Zinkwerk -->
+  <div class="dienst">
+    <div class="dienst-img">
+      <img src="images/service-zinkwerk.jpg" alt="Zinkwerk">
+    </div>
+    <div class="dienst-text">
+      <span class="dienst-label">Dienst</span>
+      <h3>Zinkwerk</h3>
+      <p>Hoogwaardige zinken afwerkingen en goten, zorgvuldig geplaatst voor optimale bescherming en esthetiek van uw gebouw.</p>
+      <a href="zinkwerk.html" class="dienst-link">Bekijk dienst <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+  <hr class="dienst-divider">
+
+  <!-- Bouw & Renovatie -->
+  <div class="dienst reverse">
+    <div class="dienst-img">
+      <img src="images/service-bouw-renovatie.jpg" alt="Bouw &amp; Renovatie">
+    </div>
+    <div class="dienst-text">
+      <span class="dienst-label">Dienst</span>
+      <h3>Bouw &amp; Renovatie</h3>
+      <p>Complete bouwprojecten en renovaties met oog voor kwaliteit, efficiëntie en uw persoonlijke wensen. Van concept tot oplevering.</p>
+      <a href="bouw-en-renovatie.html" class="dienst-link">Bekijk dienst <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+  <hr class="dienst-divider">
+
+  <!-- Noodreparatie -->
+  <div class="dienst">
+    <div class="dienst-img">
+      <img src="images/project-1.jpg" alt="Noodreparatie">
+    </div>
+    <div class="dienst-text">
+      <span class="dienst-label">Dienst</span>
+      <h3>Noodreparatie</h3>
+      <p>Snelle en betrouwbare noodreparaties om schade te beperken en uw woning weer veilig en comfortabel te maken. Wij staan 24/7 voor u klaar.</p>
+      <a href="noodreparaties.html" class="dienst-link">Bekijk dienst <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== CTA BANNER ===== -->
+<style>
+  .diensten-cta {
+    background: #CC0022;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .diensten-cta h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+  .diensten-cta p {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+  .diensten-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 2.5rem;
+    background: white;
+    color: #CC0022;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  .diensten-cta-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+  }
+</style>
+
+<div class="diensten-cta">
+  <h2>Werkzaamheden niet vermeld?</h2>
+  <p>Neem contact met ons op voor de mogelijkheden. Wij denken graag met u mee.</p>
+  <a href="contact.html" class="diensten-cta-btn">Neem contact op <i class="fas fa-arrow-right"></i></a>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<style>
+  .site-footer {
+    background: #1a1a1a;
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+  }
+  .footer-logo { margin: 0 auto 1.5rem; }
+  .footer-logo img { max-height: 70px; width: auto; margin: 0 auto; }
+  .footer-copyright { color: rgba(255,255,255,0.55); font-size: 0.88rem; font-family: 'Nunito', sans-serif; }
+</style>
+
+<footer class="site-footer">
+  <div class="footer-logo">
+    <img src="images/logo-white.png" alt="Beuker Bouw &amp; Installatie" onerror="this.src='images/logo.png'">
+  </div>
+  <p class="footer-copyright">© Copyright Beuker Bouw &amp; Installatie. Alle rechten voorbehouden.</p>
+</footer>
+
+</body>
+</html>
