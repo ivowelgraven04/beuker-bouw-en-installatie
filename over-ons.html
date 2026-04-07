@@ -104,8 +104,8 @@
   }
   @media (max-width: 768px) {
     .fab-container { left: 15px; bottom: 15px; gap: 12px; }
-    .fab-button { width: 55px; height: 55px; }
-    .fab-button i { font-size: 22px; }
+    .fab-button { width: 46px; height: 46px; }
+    .fab-button i { font-size: 18px; }
   }
 </style>
 
@@ -205,6 +205,15 @@
   const mobileSubmenu = document.getElementById('mobileSubmenu');
   const dienstenDesktopLink = megaDropdown.querySelector('.diensten-desktop-link');
   let timeout;
+  // ---- Pill navbar on scroll ----
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 60) {
+      customNavbar.classList.add('scrolled');
+    } else {
+      customNavbar.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
   function applyDienstenMode() {
     if (window.innerWidth <= 991) { dienstenDesktopLink.style.display = 'none'; dienstenToggle.style.display = 'flex'; }
     else { dienstenDesktopLink.style.display = 'inline-block'; dienstenToggle.style.display = 'none'; mobileSubmenu.classList.remove('open'); dienstenToggle.classList.remove('open'); }
@@ -303,6 +312,10 @@
     box-shadow: 0 4px 12px rgba(204,0,34,0.4);
   }
   .hero-cta-btn:hover { background: #a8001b; transform: translateY(-2px); }
+  @media (max-width: 768px) {
+    .slider { min-height: 55vh; padding: 3rem 1rem; }
+    .text-container h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); }
+  }
   @media (max-width: 600px) {
     .slider { min-height: auto; padding: 4rem 1.5rem; }
   }
@@ -613,6 +626,10 @@
   .footer-credit { color: rgba(255,255,255,0.3); font-size: 0.78rem; margin-top: 0.4rem; }
   .footer-credit a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
   .footer-credit a:hover { color: rgba(255,255,255,0.8); }
+  @media (max-width: 768px) {
+    .footer-contact { flex-direction: column; gap: 0.5rem; align-items: center; }
+    .footer-copyright, .footer-credit { font-size: 0.82rem; }
+  }
 </style>
 
 <footer class="site-footer">
