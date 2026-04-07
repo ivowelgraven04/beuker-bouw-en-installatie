@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dakwerk — Beuker Bouw & Installatie</title>
+  <title>Dakwerk | Beuker Bouw & Installatie</title>
+  <meta name="description" content="Vakkundig dakwerk door Beuker Bouw & Installatie. Dakreparaties, dakbedekking en dakkapellen – duurzaam uitgevoerd in de regio.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://beuker-bouw.nl/dakwerk.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dakwerk | Beuker Bouw & Installatie">
+  <meta property="og:description" content="Vakkundig dakwerk door Beuker Bouw & Installatie. Dakreparaties, dakbedekking en dakkapellen – duurzaam uitgevoerd.">
+  <meta property="og:url" content="https://beuker-bouw.nl/dakwerk.html">
+  <meta property="og:image" content="https://beuker-bouw.nl/images/dakwerk-hero.jpg">
+  <meta property="og:locale" content="nl_NL">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dakwerk | Beuker Bouw & Installatie">
+  <meta name="twitter:description" content="Vakkundig dakwerk – dakreparaties, dakbedekking en dakkapellen.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -237,7 +249,7 @@
   .hero {
     position: relative;
     width: 100%;
-    min-height: 520px;
+    min-height: 380px;
     background-image: url('images/dakwerk-hero.jpg');
     background-size: cover;
     background-position: center;
@@ -245,7 +257,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 4rem 2rem;
+    padding: 3rem 2rem;
   }
   .hero .overlay {
     position: absolute;
@@ -317,28 +329,6 @@
 <section class="hero">
   <div class="overlay"></div>
   <h1>Dakwerk</h1>
-  <div class="card-container">
-    <a href="loodgieterswerk.html" class="card">
-      <h3>Loodgieterswerk</h3>
-      <p>Vakmanschap in leidingwerk, installaties, verstoppingen en sanitair onderhoud.</p>
-      <span class="arrow">→</span>
-    </a>
-    <a href="zinkwerk.html" class="card">
-      <h3>Zinkwerk</h3>
-      <p>Wij leveren vakmanschap in zinkwerk voor zowel nieuwbouw als renovatieprojecten.</p>
-      <span class="arrow">→</span>
-    </a>
-    <a href="bouw-en-renovatie.html" class="card">
-      <h3>Bouw &amp; Renovatie</h3>
-      <p>Betrouwbare verbouwingen en renovaties op maat, van klein tot groot project.</p>
-      <span class="arrow">→</span>
-    </a>
-    <a href="noodreparaties.html" class="card">
-      <h3>Noodreparaties</h3>
-      <p>Directe hulp bij stormschade of lekkages – snel en efficiënt opgelost.</p>
-      <span class="arrow">→</span>
-    </a>
-  </div>
 </section>
 
 <!-- ===== INFO SECTION ===== -->
@@ -436,6 +426,61 @@
 
 <!-- ===== SERVICES LIST ===== -->
 <style>
+  .other-services-section {
+    margin-bottom: 3rem;
+  }
+  .other-services-title {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 1.5rem;
+  }
+  .other-services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .other-service-card {
+    background: #fff;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    padding: 1.25rem 1rem;
+    text-decoration: none;
+    color: #222;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .other-service-card:hover {
+    border-color: #CC0022;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(204,0,34,0.12);
+  }
+  .other-service-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #191919;
+  }
+  .other-service-card p {
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.5;
+    flex: 1;
+  }
+  .other-service-card .arrow {
+    font-size: 1.1rem;
+    color: #CC0022;
+    margin-top: 0.25rem;
+  }
+  @media (max-width: 768px) {
+    .other-services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .other-services-grid { grid-template-columns: 1fr; }
+  }
   .services-list-section {
     max-width: 1200px;
     margin: 0 auto 5rem;
@@ -579,6 +624,31 @@
       <div class="service-content"><h3>Zink- en lood</h3></div>
     </div>
   </div>
+  <div class="other-services-section">
+    <h3 class="other-services-title">Bekijk ook onze andere diensten</h3>
+    <div class="other-services-grid">
+      <a href="loodgieterswerk.html" class="other-service-card">
+        <h4>Loodgieterswerk</h4>
+        <p>Vakmanschap in leidingwerk, installaties, verstoppingen en sanitair onderhoud.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a href="zinkwerk.html" class="other-service-card">
+        <h4>Zinkwerk</h4>
+        <p>Wij leveren vakmanschap in zinkwerk voor zowel nieuwbouw als renovatieprojecten.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a href="bouw-en-renovatie.html" class="other-service-card">
+        <h4>Bouw &amp; Renovatie</h4>
+        <p>Betrouwbare verbouwingen en renovaties op maat, van klein tot groot project.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a href="noodreparaties.html" class="other-service-card">
+        <h4>Noodreparaties</h4>
+        <p>Directe hulp bij stormschade of lekkages – snel en efficiënt opgelost.</p>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
   <div class="cta-box">
     <p class="cta-text">Staan de gewenste werkzaamheden niet benoemd?</p>
     <a href="contact.html" class="cta-button">Neem contact op en ontdek wat we voor u kunnen betekenen</a>
@@ -590,14 +660,26 @@
   .site-footer { background: #1a1a1a; padding: 3rem 2rem 2rem; text-align: center; }
   .footer-logo { margin: 0 auto 1.5rem; }
   .footer-logo img { max-height: 70px; width: auto; margin: 0 auto; }
-  .footer-copyright { color: rgba(255,255,255,0.55); font-size: 0.88rem; }
+  .footer-contact { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .footer-contact a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.92rem; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+  .footer-contact a:hover { color: #fff; }
+  .footer-contact i { color: #CC0022; font-size: 0.85rem; }
+  .footer-copyright { color: rgba(255,255,255,0.55); font-size: 0.88rem; margin-bottom: 0.4rem; }
+  .footer-credit { color: rgba(255,255,255,0.3); font-size: 0.78rem; margin-top: 0.4rem; }
+  .footer-credit a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-credit a:hover { color: rgba(255,255,255,0.8); }
 </style>
 
 <footer class="site-footer">
   <div class="footer-logo">
     <img src="images/logo-white.png" alt="Beuker Bouw &amp; Installatie" onerror="this.src='images/logo.png'">
   </div>
+  <div class="footer-contact">
+    <a href="tel:+31613871455"><i class="fas fa-phone"></i> +31 6 13871455</a>
+    <a href="mailto:info@beuker-bouw.nl"><i class="fas fa-envelope"></i> info@beuker-bouw.nl</a>
+  </div>
   <p class="footer-copyright">© Copyright Beuker Bouw &amp; Installatie. Alle rechten voorbehouden.</p>
+  <p class="footer-credit">Webdesign door <a href="https://deprocesdesigners.nl/" target="_blank" rel="noopener">De Proces Designers</a></p>
 </footer>
 
 </body>

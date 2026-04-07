@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beuker Bouw & Installatie</title>
+  <title>Beuker Bouw & Installatie | Loodgieter, Dakwerk & Renovatie in de regio</title>
+  <meta name="description" content="Beuker Bouw & Installatie – uw betrouwbare partner voor loodgieterswerk, dakwerk, zinkwerk, bouw & renovatie en noodreparaties. Actief in de regio, snel en vakkundig.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://beuker-bouw.nl/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Beuker Bouw & Installatie | Loodgieter, Dakwerk & Renovatie">
+  <meta property="og:description" content="Betrouwbare partner voor loodgieterswerk, dakwerk, zinkwerk, bouw & renovatie en noodreparaties. Snel en vakkundig in de regio.">
+  <meta property="og:url" content="https://beuker-bouw.nl/">
+  <meta property="og:image" content="https://beuker-bouw.nl/images/hero-1.jpg">
+  <meta property="og:locale" content="nl_NL">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Beuker Bouw & Installatie">
+  <meta name="twitter:description" content="Betrouwbare partner voor loodgieterswerk, dakwerk, zinkwerk, bouw & renovatie en noodreparaties.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -191,17 +203,47 @@
     .service-card img {
       width: 100%; height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
+      object-position: center;
+      filter: blur(2.5px) brightness(0.72);
+      transition: transform 0.45s ease, filter 0.45s ease;
+      will-change: transform, filter;
+      image-rendering: -webkit-optimize-contrast;
     }
-    .service-card:hover img { transform: scale(1.06); }
+    .service-card:hover img {
+      transform: scale(1.07);
+      filter: blur(0px) brightness(0.6);
+    }
     .service-card .overlay {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 2rem 1.5rem 1.5rem;
-      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: transparent;
       color: white;
-      font-size: 1.05rem;
-      font-weight: 700;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-align: center;
+      padding: 1.5rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      transition: all 0.3s ease;
+    }
+    .service-card:hover .overlay {
+      background: rgba(204,0,34,0.18);
+    }
+    .service-card .overlay::after {
+      content: '→';
+      font-size: 1.4rem;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.3s ease;
+    }
+    .service-card:hover .overlay::after {
+      opacity: 1;
+      transform: translateY(0);
     }
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(3, 1fr); }
@@ -381,35 +423,71 @@
     .info-section {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      background: #f9f9f9;
+      background: #111;
+      gap: 0;
     }
     .info-box {
       text-align: center;
-      padding: 3.5rem 2rem;
-      border-right: 1px solid #e8e8e8;
+      padding: 3.5rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      transition: background 0.35s ease;
     }
     .info-box:last-child { border-right: none; }
-    .info-box i {
-      font-size: 2.5rem;
-      color: #CC0022;
-      margin-bottom: 1.25rem;
+    .info-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #CC0022, #ff2244);
+      transform: scaleX(0);
+      transition: transform 0.35s ease;
+    }
+    .info-box:hover { background: #1c1c1c; }
+    .info-box:hover::before { transform: scaleX(1); }
+    .info-box-icon {
+      width: 72px; height: 72px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #CC0022 0%, #a8001b 100%);
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      font-size: 1.8rem;
+      color: white;
+      box-shadow: 0 8px 24px rgba(204,0,34,0.35);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .info-box:hover .info-box-icon {
+      transform: scale(1.1) translateY(-4px);
+      box-shadow: 0 14px 32px rgba(204,0,34,0.5);
     }
     .info-box h3 {
       font-size: 1.2rem;
       font-weight: 800;
-      color: #191919;
+      color: #fff;
       margin-bottom: 0.75rem;
     }
     .info-box p {
-      color: #666;
+      color: rgba(255,255,255,0.6);
       line-height: 1.65;
       font-size: 0.92rem;
       max-width: 280px;
-      margin: 0 auto;
+      margin: 0 auto 1.5rem;
     }
+    .info-box-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #CC0022;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: gap 0.2s ease;
+    }
+    .info-box-link:hover { gap: 0.7rem; }
     @media (max-width: 768px) {
       .info-section { grid-template-columns: 1fr; }
-      .info-box { border-right: none; border-bottom: 1px solid #e8e8e8; }
+      .info-box { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
       .info-box:last-child { border-bottom: none; }
     }
 
@@ -421,11 +499,42 @@
     }
     .footer-logo { margin: 0 auto 1.5rem; }
     .footer-logo img { max-height: 70px; width: auto; margin: 0 auto; }
+    .footer-contact {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .footer-contact a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .footer-contact a:hover { color: #fff; }
+    .footer-contact i { color: #CC0022; font-size: 0.85rem; }
     .footer-copyright {
       color: rgba(255,255,255,0.55);
       font-size: 0.88rem;
       font-family: 'Nunito', sans-serif;
+      margin-bottom: 0.4rem;
     }
+    .footer-credit {
+      color: rgba(255,255,255,0.3);
+      font-size: 0.78rem;
+      font-family: 'Nunito', sans-serif;
+      margin-top: 0.4rem;
+    }
+    .footer-credit a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-credit a:hover { color: rgba(255,255,255,0.8); }
   </style>
 </head>
 <body>
@@ -1292,19 +1401,6 @@
       Bekijk onze eerdere projecten <i class="fas fa-arrow-right"></i>
     </a>
   </div>
-  <div class="contact-info-bar">
-    <a href="tel:+31613871455">
-      <i class="fab fa-whatsapp"></i>
-      <span><strong>Telefoon:</strong> +31 6 13871455</span>
-    </a>
-    <a href="mailto:info@beuker-bouw.nl">
-      <i class="fas fa-envelope"></i>
-      <span><strong>Email:</strong> info@beuker-bouw.nl</span>
-    </a>
-    <span>
-      <i class="fas fa-globe"></i>
-      <span><strong>Site:</strong> https://beuker-bouw.nl/</span>
-    </span>
   </div>
 </div>
 
@@ -1356,19 +1452,22 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <div class="info-section">
   <div class="info-box">
-    <i class="fas fa-comment-dots"></i>
+    <div class="info-box-icon"><i class="fas fa-comment-dots"></i></div>
     <h3>Vragen &amp; contact</h3>
     <p>Neem contact met ons op voor vragen of advies. Wij helpen u graag verder!</p>
+    <a href="contact.html" class="info-box-link">Neem contact op <i class="fas fa-arrow-right"></i></a>
   </div>
   <div class="info-box">
-    <i class="fas fa-star"></i>
+    <div class="info-box-icon"><i class="fas fa-star"></i></div>
     <h3>Reviews</h3>
     <p>Lees wat onze klanten over ons zeggen. Kwaliteit staat bij ons voorop.</p>
+    <a href="projecten.html" class="info-box-link">Bekijk reviews <i class="fas fa-arrow-right"></i></a>
   </div>
   <div class="info-box">
-    <i class="fas fa-file-signature"></i>
+    <div class="info-box-icon"><i class="fas fa-file-signature"></i></div>
     <h3>Offerte aanvragen</h3>
     <p>Vraag vandaag nog een vrijblijvende offerte aan voor uw project.</p>
+    <a href="contact.html" class="info-box-link">Offerte aanvragen <i class="fas fa-arrow-right"></i></a>
   </div>
 </div>
 
@@ -1377,7 +1476,12 @@
   <div class="footer-logo">
     <img src="images/logo-white.png" alt="Beuker Bouw &amp; Installatie" onerror="this.src='images/logo.png'">
   </div>
+  <div class="footer-contact">
+    <a href="tel:+31613871455"><i class="fas fa-phone"></i> +31 6 13871455</a>
+    <a href="mailto:info@beuker-bouw.nl"><i class="fas fa-envelope"></i> info@beuker-bouw.nl</a>
+  </div>
   <p class="footer-copyright">© Copyright Beuker Bouw &amp; Installatie. Alle rechten voorbehouden.</p>
+  <p class="footer-credit">Webdesign door <a href="https://deprocesdesigners.nl/" target="_blank" rel="noopener">De Proces Designers</a></p>
 </footer>
 
 </body>
