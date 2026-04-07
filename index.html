@@ -821,16 +821,24 @@
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
   .mobile-submenu li a {
-    display: block;
-    padding: 0.75rem 0 0.75rem 1.2rem !important;
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    color: rgba(255,255,255,0.85) !important;
+    display: flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 0 0.85rem 1rem !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: rgba(255,255,255,0.9) !important;
     text-decoration: none;
+  }
+  .mobile-submenu li a::before {
+    content: '–';
+    opacity: 0.5;
+    font-size: 13px;
   }
   .mobile-submenu li a:hover {
     color: #fff !important;
-    opacity: 1 !important;
+    padding-left: 1.4rem !important;
+    transition: padding 0.15s ease;
   }
   /* Arrow icon for Diensten toggle */
   .diensten-toggle {
@@ -925,19 +933,62 @@
     }
     .nav-item {
       width: 100%;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
     }
-    .nav-item a {
-      display: block;
-      padding: 1rem 0;
-      font-size: 16px;
+    .nav-item > a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.15rem 0;
+      font-size: 18px;
       width: 100%;
       color: #fff !important;
-      font-weight: 600;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .nav-item > a::after {
+      content: '›';
+      font-size: 20px;
+      opacity: 0.5;
+      font-weight: 400;
     }
     .nav-item a:hover {
+      opacity: 0.85;
+    }
+    /* Diensten split row: link left, chevron right — mobile only */
+    .diensten-toggle-row {
+      display: none; /* shown via JS on mobile */
+      align-items: center;
+      width: 100%;
+      border: none;
+    }
+    .diensten-mobile-link {
+      flex: 1;
+      padding: 1.15rem 0 !important;
+      font-size: 18px !important;
+      font-weight: 700 !important;
       color: #fff !important;
-      opacity: 0.8;
+      text-decoration: none;
+    }
+    .diensten-mobile-link::after { display: none !important; }
+    .diensten-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      background: rgba(255,255,255,0.12);
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .diensten-toggle .toggle-arrow {
+      transition: transform 0.3s ease;
+      font-size: 13px;
+      color: #fff;
+    }
+    .diensten-toggle.open .toggle-arrow {
+      transform: rotate(180deg);
     }
     /* HIDE mega menu completely in mobile */
     .mega-dropdown .mega-menu {
@@ -1051,11 +1102,13 @@
         <a href="index.html">Home</a>
       </li>
       <li class="nav-item mega-dropdown" id="megaDropdown">
-        <!-- Desktop: plain link | Mobile: toggle row -->
+        <!-- Desktop: plain link | Mobile: split row (link + chevron) -->
         <a href="diensten.html" class="diensten-desktop-link">Diensten</a>
-        <div class="diensten-toggle" id="dienstenToggle">
-          <span>Diensten</span>
-          <i class="fas fa-chevron-down toggle-arrow"></i>
+        <div class="diensten-toggle-row">
+          <a href="diensten.html" class="diensten-mobile-link">Diensten</a>
+          <div class="diensten-toggle" id="dienstenToggle">
+            <i class="fas fa-chevron-down toggle-arrow"></i>
+          </div>
         </div>
         <!-- Desktop Mega Menu -->
         <div class="mega-menu">
@@ -1149,6 +1202,7 @@
   const dienstenToggle = document.getElementById('dienstenToggle');
   const mobileSubmenu = document.getElementById('mobileSubmenu');
   const dienstenDesktopLink = megaDropdown.querySelector('.diensten-desktop-link');
+  const dienstenToggleRow = megaDropdown.querySelector('.diensten-toggle-row');
   let timeout;
 
   // ---- Pill navbar on scroll ----
@@ -1164,10 +1218,10 @@
   function applyDienstenMode() {
     if (window.innerWidth <= 991) {
       dienstenDesktopLink.style.display = 'none';
-      dienstenToggle.style.display = 'flex';
+      dienstenToggleRow.style.display = 'flex';
     } else {
       dienstenDesktopLink.style.display = 'inline-block';
-      dienstenToggle.style.display = 'none';
+      dienstenToggleRow.style.display = 'none';
       mobileSubmenu.classList.remove('open');
       dienstenToggle.classList.remove('open');
     }
