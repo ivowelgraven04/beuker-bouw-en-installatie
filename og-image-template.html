@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+    background: #0d0d0d;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap');
+
+  .card {
+    width: 1200px;
+    height: 630px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #111;
+  }
+
+  /* Background image */
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/hero-1.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.22);
+  }
+
+  /* Red accent bar left */
+  .accent-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 8px;
+    background: linear-gradient(180deg, #CC0022, #ff1133);
+  }
+
+  /* Red diagonal shape */
+  .red-shape {
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 420px;
+    height: 420px;
+    background: linear-gradient(135deg, #CC0022 0%, #8a0016 100%);
+    transform: rotate(20deg);
+    opacity: 0.18;
+    border-radius: 60px;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+  }
+
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .logo-wrap img {
+    height: 64px;
+    filter: brightness(0) invert(1);
+  }
+
+  .tagline-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #CC0022;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+    width: fit-content;
+  }
+
+  h1 {
+    font-size: 58px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.08;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+  }
+
+  h1 span {
+    color: #CC0022;
+  }
+
+  .sub {
+    font-size: 20px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 560px;
+  }
+
+  /* Right side icons */
+  .icons-col {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 2;
+  }
+
+  .icon-badge {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 13px 18px;
+    width: 220px;
+  }
+
+  .icon-circle {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, #CC0022, #a8001b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  .icon-text {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  /* Bottom bar */
+  .bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #CC0022 0%, #ff3355 50%, #CC0022 100%);
+  }
+
+  .domain {
+    position: absolute;
+    bottom: 22px;
+    left: 80px;
+    color: rgba(255,255,255,0.35);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    z-index: 2;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="bg"></div>
+  <div class="accent-bar"></div>
+  <div class="red-shape"></div>
+
+  <div class="content">
+    <div class="logo-wrap">
+      <img src="images/logo.png" alt="Beuker">
+    </div>
+
+    <div class="tagline-pill">
+      ★ 5.0 Google Reviews
+    </div>
+
+    <h1>Vakwerk.<br><span>Zonder</span> gedoe.</h1>
+
+    <p class="sub">Loodgieterswerk · Dakwerk · Zinkwerk<br>Bouw & Renovatie · Noodreparaties</p>
+  </div>
+
+  <div class="icons-col">
+    <div class="icon-badge">
+      <div class="icon-circle">🔧</div>
+      <span class="icon-text">Loodgieterswerk</span>
+    </div>
+    <div class="icon-badge">
+      <div class="icon-circle">🏠</div>
+      <span class="icon-text">Dakwerk & Zinkwerk</span>
+    </div>
+    <div class="icon-badge">
+      <div class="icon-circle">🚨</div>
+      <span class="icon-text">24/7 Noodreparaties</span>
+    </div>
+    <div class="icon-badge">
+      <div class="icon-circle">🏗️</div>
+      <span class="icon-text">Bouw & Renovatie</span>
+    </div>
+  </div>
+
+  <div class="domain">beuker-bouw.nl</div>
+  <div class="bottom-bar"></div>
+</div>
+</body>
+</html>
