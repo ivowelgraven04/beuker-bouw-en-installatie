@@ -100,8 +100,9 @@
   .mobile-submenu { display: none; flex-direction: column; padding: 0; margin: 0; list-style: none; overflow: hidden; max-height: 0; transition: max-height 0.35s ease; }
   .mobile-submenu.open { display: flex; max-height: 500px; }
   .mobile-submenu li { border-bottom: 1px solid rgba(255,255,255,0.1); }
-  .mobile-submenu li a { display: block; padding: 0.75rem 0 0.75rem 1.2rem !important; font-size: 14px !important; font-weight: 500 !important; color: rgba(255,255,255,0.85) !important; text-decoration: none; }
-  .mobile-submenu li a:hover { color: #fff !important; opacity: 1 !important; }
+  .mobile-submenu li a { display: flex !important; align-items: center; gap: 0.5rem; padding: 0.85rem 0 0.85rem 1rem !important; font-size: 15px !important; font-weight: 600 !important; color: rgba(255,255,255,0.9) !important; text-decoration: none; }
+  .mobile-submenu li a::before { content: '–'; opacity: 0.5; font-size: 13px; }
+  .mobile-submenu li a:hover { color: #fff !important; padding-left: 1.4rem !important; }
   .diensten-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; cursor: pointer; }
   .diensten-toggle .toggle-arrow { transition: transform 0.3s ease; font-size: 12px; color: rgba(255,255,255,0.8); }
   .diensten-toggle.open .toggle-arrow { transform: rotate(180deg); }
@@ -125,9 +126,16 @@
     .navbar-socials { display: none !important; }
     .nav-menu { position: fixed; top: 0; right: 0; transform: translateX(100%); width: 280px; height: 100vh; background: #CC0022; flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start !important; padding: 5rem 2rem 2rem 2rem !important; gap: 0 !important; box-shadow: -5px 0 15px rgba(0,0,0,0.3); transition: transform 0.3s ease; overflow-y: auto; z-index: 1000; visibility: hidden; }
     .nav-menu.active { transform: translateX(0); visibility: visible; }
-    .nav-item { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.2); }
-    .nav-item a { display: block; padding: 1rem 0; font-size: 16px; width: 100%; color: #fff !important; font-weight: 600; }
-    .nav-item a:hover { color: #fff !important; opacity: 0.8; }
+    .nav-item { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .nav-item > a { display: flex; align-items: center; justify-content: space-between; padding: 1.15rem 0; font-size: 18px; width: 100%; color: #fff !important; font-weight: 700; text-decoration: none; }
+    .nav-item > a::after { content: '›'; font-size: 20px; opacity: 0.5; font-weight: 400; }
+    .nav-item a:hover { opacity: 0.85; }
+    .diensten-toggle-row { display: none; align-items: center; width: 100%; }
+    .diensten-mobile-link { flex: 1; padding: 1.15rem 0 !important; font-size: 18px !important; font-weight: 700 !important; color: #fff !important; text-decoration: none; }
+    .diensten-mobile-link::after { display: none !important; }
+    .diensten-toggle { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; cursor: pointer; background: rgba(255,255,255,0.12); border-radius: 8px; flex-shrink: 0; }
+    .diensten-toggle .toggle-arrow { transition: transform 0.3s ease; font-size: 13px; color: #fff; }
+    .diensten-toggle.open .toggle-arrow { transform: rotate(180deg); }
     .mega-dropdown .mega-menu { display: none !important; }
     .mobile-submenu.open { display: flex; }
   }
@@ -159,9 +167,11 @@
       <li class="nav-item"><a href="index.html">Home</a></li>
       <li class="nav-item mega-dropdown" id="megaDropdown">
         <a href="diensten.html" class="diensten-desktop-link">Diensten</a>
-        <div class="diensten-toggle" id="dienstenToggle">
-          <span>Diensten</span>
-          <i class="fas fa-chevron-down toggle-arrow"></i>
+        <div class="diensten-toggle-row">
+          <a href="diensten.html" class="diensten-mobile-link">Diensten</a>
+          <div class="diensten-toggle" id="dienstenToggle">
+            <i class="fas fa-chevron-down toggle-arrow"></i>
+          </div>
         </div>
         <div class="mega-menu">
           <div class="mega-menu-inner">
@@ -239,6 +249,7 @@
   const dienstenToggle = document.getElementById('dienstenToggle');
   const mobileSubmenu = document.getElementById('mobileSubmenu');
   const dienstenDesktopLink = megaDropdown.querySelector('.diensten-desktop-link');
+  const dienstenToggleRow = megaDropdown.querySelector('.diensten-toggle-row');
   const dienstenToggleRow = megaDropdown.querySelector('.diensten-toggle-row');
   let timeout;
   // ---- Pill navbar on scroll ----
