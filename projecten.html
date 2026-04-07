@@ -123,8 +123,8 @@
     .desktop-logo-container { display: none !important; }
     .hamburger { display: flex; flex-shrink: 0; margin-left: auto; }
     .navbar-socials { display: none !important; }
-    .nav-menu { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: #CC0022; flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start !important; padding: 5rem 2rem 2rem 2rem !important; gap: 0 !important; box-shadow: -5px 0 15px rgba(0,0,0,0.3); transition: right 0.3s ease; overflow-y: auto; z-index: 1000; }
-    .nav-menu.active { right: 0; }
+    .nav-menu { position: fixed; top: 0; right: 0; transform: translateX(100%); width: 280px; height: 100vh; background: #CC0022; flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start !important; padding: 5rem 2rem 2rem 2rem !important; gap: 0 !important; box-shadow: -5px 0 15px rgba(0,0,0,0.3); transition: transform 0.3s ease; overflow-y: auto; z-index: 1000; visibility: hidden; }
+    .nav-menu.active { transform: translateX(0); visibility: visible; }
     .nav-item { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.2); }
     .nav-item a { display: block; padding: 1rem 0; font-size: 16px; width: 100%; color: #fff !important; font-weight: 600; }
     .nav-item a:hover { color: #fff !important; opacity: 0.8; }
@@ -134,7 +134,7 @@
   @media (max-width: 480px) {
     .custom-navbar { padding: 0.75rem 1rem; }
     .mobile-logo img { height: 55px; }
-    .nav-menu { width: 100%; right: -100%; }
+    .nav-menu { width: 100%; right: 0; transform: translateX(100%); }
     .hamburger span { width: 22px; }
   }
   @media (max-width: 768px) {

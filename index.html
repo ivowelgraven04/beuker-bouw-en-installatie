@@ -902,7 +902,8 @@
     .nav-menu {
       position: fixed;
       top: 0;
-      right: -100%;
+      right: 0;
+      transform: translateX(100%);
       width: 280px;
       height: 100vh;
       background: #CC0022;
@@ -912,12 +913,14 @@
       padding: 5rem 2rem 2rem 2rem !important;
       gap: 0 !important;
       box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-      transition: right 0.3s ease;
+      transition: transform 0.3s ease;
       overflow-y: auto;
       z-index: 1000;
+      visibility: hidden;
     }
     .nav-menu.active {
-      right: 0;
+      transform: translateX(0);
+      visibility: visible;
     }
     .nav-item {
       width: 100%;
@@ -953,7 +956,8 @@
     }
     .nav-menu {
       width: 100%;
-      right: -100%;
+      right: 0;
+      transform: translateX(100%);
     }
     .hamburger span {
       width: 22px;
