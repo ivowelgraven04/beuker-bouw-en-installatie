@@ -250,7 +250,6 @@
   const mobileSubmenu = document.getElementById('mobileSubmenu');
   const dienstenDesktopLink = megaDropdown.querySelector('.diensten-desktop-link');
   const dienstenToggleRow = megaDropdown.querySelector('.diensten-toggle-row');
-  const dienstenToggleRow = megaDropdown.querySelector('.diensten-toggle-row');
   let timeout;
   // ---- Pill navbar on scroll ----
   window.addEventListener('scroll', function() {
@@ -262,8 +261,8 @@
   }, { passive: true });
 
   function applyDienstenMode() {
-    if (window.innerWidth <= 991) { dienstenDesktopLink.style.display = 'none'; dienstenToggle.style.display = 'flex'; }
-    else { dienstenDesktopLink.style.display = 'inline-block'; dienstenToggle.style.display = 'none'; mobileSubmenu.classList.remove('open'); dienstenToggle.classList.remove('open'); }
+    if (window.innerWidth <= 991) { dienstenDesktopLink.style.display = 'none'; dienstenToggleRow.style.display = 'flex'; }
+    else { dienstenDesktopLink.style.display = 'inline-block'; dienstenToggleRow.style.display = 'none'; mobileSubmenu.classList.remove('open'); dienstenToggle.classList.remove('open'); }
   }
   applyDienstenMode();
   window.addEventListener('resize', applyDienstenMode);
