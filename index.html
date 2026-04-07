@@ -324,9 +324,10 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       text-decoration: none;
-      transition: background 0.3s ease;
+      border-radius: 8px;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
-    .projects-cta-btn:hover { background: #a8001b; }
+    .projects-cta-btn:hover { background: #a8001b; transform: translateY(-2px); }
     .contact-info-bar {
       position: relative;
       z-index: 1;
@@ -1459,17 +1460,6 @@
 <!-- ===== PROJECTEN HEADING ===== -->
 <h2 class="section-heading">Projecten</h2>
 
-<!-- ===== PROJECTS CTA BANNER ===== -->
-<div class="projects-cta-banner">
-  <div class="projects-cta-content">
-    <h2>Meer dan 15 jaar<br>werkervaring</h2>
-    <a href="projecten.html" class="projects-cta-btn">
-      Bekijk onze eerdere projecten <i class="fas fa-arrow-right"></i>
-    </a>
-  </div>
-  </div>
-</div>
-
 <!-- ===== PROJECTS GRID ===== -->
 <div class="projects-section-wrapper">
   <style>
@@ -1478,6 +1468,10 @@
       color: #191919 !important;
       opacity: 1 !important;
       visibility: visible !important;
+    }
+    .projects-link-center {
+      text-align: center;
+      padding: 2.5rem 2rem 1rem;
     }
   </style>
   <div class="grid">
@@ -1500,13 +1494,11 @@
       </div>
     </a>
   </div>
-</div>
-
-<!-- ===== QUOTE CTA ===== -->
-<div class="quote-section">
-  <a href="contact.html" class="quote-button">
-    <strong>Vraag een offerte aan</strong>
-  </a>
+  <div class="projects-link-center">
+    <a href="projecten.html" class="projects-cta-btn">
+      Bekijk onze eerdere projecten <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
 </div>
 
 <!-- ===== GOOGLE REVIEWS ===== -->
