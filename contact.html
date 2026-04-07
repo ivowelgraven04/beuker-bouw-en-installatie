@@ -33,7 +33,40 @@
 
 <!-- ===== NAVBAR ===== -->
 <style>
-  .custom-navbar { background: #fff; padding: 1rem 2rem; font-family: 'Nunito', sans-serif; position: sticky; top: 0; z-index: 999; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: background 0.3s ease; }
+  .custom-navbar {
+    background: #fff;
+    padding: 1rem 2rem;
+    font-family: 'Nunito', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: background 0.3s ease, padding 0.4s ease, margin 0.4s ease,
+                border-radius 0.4s ease, box-shadow 0.4s ease, max-width 0.4s ease;
+  }
+  /* ===== PILL NAVBAR ON SCROLL ===== */
+  .custom-navbar.scrolled {
+    top: 12px;
+    margin: 0 auto;
+    max-width: 900px;
+    left: 0; right: 0;
+    border-radius: 999px;
+    padding: 0.6rem 2rem;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 1.5px 6px rgba(0,0,0,0.07);
+  }
+  @media (max-width: 991px) {
+    .custom-navbar.scrolled {
+      max-width: calc(100% - 32px);
+      border-radius: 999px;
+      padding: 0.55rem 1.25rem;
+    }
+    .custom-navbar.scrolled.menu-open {
+      border-radius: 20px;
+    }
+  }
   .navbar-content { display: flex; align-items: center; justify-content: space-between; width: 100%; position: relative; }
   .mobile-logo { display: none; transition: opacity 0.3s ease, visibility 0.3s ease; }
   .mobile-logo img { height: 50px; width: auto; }
@@ -302,31 +335,7 @@
     margin-bottom: 25px;
     padding: 15px;
     border-radius: 8px;
-    transition: background 0.3s ease, padding 0.4s ease, margin 0.4s ease,
-                border-radius 0.4s ease, box-shadow 0.4s ease, max-width 0.4s ease;
-  }
-  /* ===== PILL NAVBAR ON SCROLL ===== */
-  .custom-navbar.scrolled {
-    top: 12px;
-    margin: 0 auto;
-    max-width: 900px;
-    left: 0; right: 0;
-    border-radius: 999px;
-    padding: 0.6rem 2rem;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 1.5px 6px rgba(0,0,0,0.07);
-  }
-  @media (max-width: 991px) {
-    .custom-navbar.scrolled {
-      max-width: calc(100% - 32px);
-      border-radius: 999px;
-      padding: 0.55rem 1.25rem;
-    }
-    .custom-navbar.scrolled.menu-open {
-      border-radius: 20px;
-    }
+    transition: background 0.3s ease;
   }
   .info-item:hover { background: #f9f9f9; }
   .info-item i { font-size: 1.5rem; color: #CC0022; margin-right: 20px; min-width: 30px; }
