@@ -177,6 +177,8 @@
     }
     @media (max-width: 768px) {
       .usp-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .slider { min-height: 55vh; }
+      .company-name { font-size: 1.3rem; letter-spacing: 1px; }
     }
 
     /* ===== SECTION HEADINGS ===== */
@@ -416,7 +418,7 @@
     }
     @media (max-width: 768px) {
       .quote-section h2 { font-size: 1.4rem; padding: 0 1rem; }
-      .quote-button { padding: 0.875rem 2rem; font-size: 1rem; }
+      .quote-button { padding: 0.875rem 2rem; font-size: 1rem; display: block; text-align: center; }
     }
 
     /* ===== INFO SECTION ===== */
@@ -535,6 +537,10 @@
       transition: color 0.2s;
     }
     .footer-credit a:hover { color: rgba(255,255,255,0.8); }
+    @media (max-width: 768px) {
+      .footer-contact { flex-direction: column; gap: 0.5rem; align-items: center; }
+      .footer-copyright, .footer-credit { font-size: 0.82rem; }
+    }
   </style>
 </head>
 <body>
@@ -958,11 +964,11 @@
       gap: 12px;
     }
     .fab-button {
-      width: 55px;
-      height: 55px;
+      width: 46px;
+      height: 46px;
     }
     .fab-button i {
-      font-size: 22px;
+      font-size: 18px;
     }
   }
 </style>
@@ -1444,8 +1450,64 @@
 </div>
 
 <!-- ===== GOOGLE REVIEWS ===== -->
-<script src="https://static.elfsight.com/platform/platform.js" async></script>
-<div class="elfsight-app-763cb9bd-1430-4195-be0c-e081a53685a7" data-elfsight-app-lazy></div>
+<style>
+  .reviews-section {
+    background: #fff;
+    padding: 3rem 2rem 2rem;
+  }
+  .reviews-section h2 {
+    text-align: center;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 1.5rem;
+  }
+  /* Override Elfsight summary block background to white */
+  .eapps-google-reviews-summary,
+  .eapps-google-reviews-summary-info,
+  [class*="eapps-google-reviews"] [class*="summary"],
+  [class*="eapps-google-reviews-summary"] {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  /* Force white on all direct widget children that might have dark bg */
+  .reviews-section > div,
+  .reviews-section .eapps-google-reviews,
+  .reviews-section [class*="eapps-google-reviews-page"],
+  .reviews-section [class*="eapps-widget-toolbar"] {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+</style>
+<div class="reviews-section">
+  <h2>Wat Onze Klanten Zeggen</h2>
+  <script src="https://static.elfsight.com/platform/platform.js" async></script>
+  <div class="elfsight-app-763cb9bd-1430-4195-be0c-e081a53685a7" data-elfsight-app-lazy></div>
+</div>
+<script>
+  // Force white background on Elfsight summary block after widget renders
+  (function() {
+    function fixReviewsBg() {
+      const selectors = [
+        '[class*="eapps-google-reviews-summary"]',
+        '[class*="eapps-google-reviews-page"]',
+        '.eapps-google-reviews'
+      ];
+      selectors.forEach(function(sel) {
+        document.querySelectorAll(sel).forEach(function(el) {
+          el.style.setProperty('background-color', '#ffffff', 'important');
+          el.style.setProperty('background', '#ffffff', 'important');
+        });
+      });
+    }
+    // Run on load and after short delays to catch lazy widget init
+    window.addEventListener('load', fixReviewsBg);
+    setTimeout(fixReviewsBg, 1500);
+    setTimeout(fixReviewsBg, 3500);
+  })();
+</script>
 
 <!-- ===== INFO SECTION ===== -->
 <!-- Font Awesome for Icons -->
