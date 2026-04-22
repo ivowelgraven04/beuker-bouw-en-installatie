@@ -19,13 +19,13 @@
   <meta name="twitter:title" content="Beuker Bouw & Installatie">
   <meta name="twitter:description" content="Betrouwbare partner voor loodgieterswerk, dakwerk, zinkwerk, bouw & renovatie en noodreparaties.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     /* ===== GLOBAL RESET ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Nunito', sans-serif; color: #222; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; color: #222; overflow-x: hidden; }
     img { max-width: 100%; height: auto; display: block; }
     a { text-decoration: none; }
 
@@ -79,7 +79,7 @@
       line-height: 1.1;
     }
     .hero-typed {
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
       font-weight: 400;
       color: #fff;
       min-height: 1.4em;
@@ -105,13 +105,13 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 1rem 1.5rem;
+      padding: 0.7rem 1.3rem;
       background: #CC0022;
       color: white;
       border-radius: 50px;
-      font-weight: 700;
-      font-size: 1rem;
-      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
       transition: background 0.3s ease, transform 0.2s ease;
     }
     .button-primary a:hover { background: #a8001b; transform: translateY(-2px); }
@@ -119,13 +119,13 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 1rem 1.5rem;
-      border: 2px solid #CC0022;
+      padding: 0.7rem 1.3rem;
+      border: 2px solid rgba(255,255,255,0.7);
       color: white;
       border-radius: 50px;
-      font-weight: 700;
-      font-size: 1rem;
-      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
       transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     }
     .button-outline a:hover { background: white; color: #222; border-color: white; }
@@ -314,17 +314,17 @@
     .projects-cta-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 1.1rem 2.2rem;
+      gap: 0.6rem;
+      padding: 0.75rem 1.6rem;
       background: #CC0022;
       color: white;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.88rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0;
+      text-transform: none;
       text-decoration: none;
-      border-radius: 8px;
+      border-radius: 50px;
       transition: background 0.3s ease, transform 0.2s ease;
     }
     .projects-cta-btn:hover { background: #a8001b; transform: translateY(-2px); }
@@ -546,13 +546,13 @@
     .footer-copyright {
       color: rgba(255,255,255,0.55);
       font-size: 0.88rem;
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Inter', sans-serif;
       margin-bottom: 0.4rem;
     }
     .footer-credit {
       color: rgba(255,255,255,0.3);
       font-size: 0.78rem;
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Inter', sans-serif;
       margin-top: 0.4rem;
     }
     .footer-credit a {
@@ -570,13 +570,12 @@
 <body>
 
 <!-- ===== NAVBAR ===== -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <style>
   /* ===== BASE STYLES ===== */
   .custom-navbar {
     background: #fff;
     padding: 1rem 2rem;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Inter', sans-serif;
     position: sticky;
     top: 0;
     z-index: 999;
@@ -1080,13 +1079,13 @@
   <div class="navbar-content">
     <!-- Mobile Logo - Shows ONLY on mobile -->
     <a href="index.html" class="mobile-logo" id="mobileLogo">
-      <img src="images/logo.png" alt="Beuker Logo" />
+      <img loading="lazy" src="images/logo.png" alt="Beuker Logo" />
     </a>
     <!-- Desktop Logo Container - Shows ONLY on desktop -->
     <div class="desktop-logo-container">
       <a href="index.html">
         <div class="navbar-logo">
-          <img src="images/logo.png" alt="Beuker Logo" style="height:56px;width:auto;" />
+          <img loading="lazy" src="images/logo.png" alt="Beuker Logo" style="height:56px;width:auto;" />
         </div>
       </a>
     </div>
@@ -1336,7 +1335,7 @@
       <div class="company-name">Beuker Bouw en Installatie</div>
       <div class="services-subtitle">
         Expert in dak- zink- en loodgieterswerk<br>
-        uitvoerende en begeleidende partner in bouw- en renovatieprojecten.
+        én uw partner in bouw- en renovatieprojecten.
       </div>
       <h1 class="hero-typed">
         <span id="typed-text"></span><span class="cursor">|</span>
@@ -1489,23 +1488,23 @@
 <section class="services-section">
   <div class="services-grid">
     <a href="loodgieterswerk.html" class="service-card">
-      <img src="images/service-loodgieterswerk.jpg" alt="Loodgieterswerk">
+      <img loading="lazy" src="images/service-loodgieterswerk.jpg" alt="Loodgieterswerk">
       <div class="overlay">Loodgieterswerk</div>
     </a>
     <a href="dakwerk.html" class="service-card">
-      <img src="images/service-dakwerk.jpg" alt="Dakwerk">
+      <img loading="lazy" src="images/service-dakwerk.jpg" alt="Dakwerk">
       <div class="overlay">Dakwerk</div>
     </a>
     <a href="zinkwerk.html" class="service-card">
-      <img src="images/service-zinkwerk.jpg" alt="Zinkwerk">
+      <img loading="lazy" src="images/service-zinkwerk.jpg" alt="Zinkwerk">
       <div class="overlay">Zinkwerk</div>
     </a>
     <a href="bouw-en-renovatie.html" class="service-card">
-      <img src="images/service-bouw-renovatie.jpg" alt="Bouw &amp; Renovatie">
+      <img loading="lazy" src="images/service-bouw-renovatie.jpg" alt="Bouw &amp; Renovatie">
       <div class="overlay">Bouw &amp; Renovatie</div>
     </a>
     <a href="noodreparaties.html" class="service-card">
-      <img src="images/service-noodreparatie.jpg" alt="Noodreparatie">
+      <img loading="lazy" src="images/service-noodreparatie.jpg" alt="Noodreparatie">
       <div class="overlay">Noodreparatie</div>
     </a>
   </div>
@@ -1531,7 +1530,7 @@
   <div class="grid">
     <!-- Block 1 -->
     <a href="projecten.html" class="card">
-      <img src="images/project-1.jpg" alt="Loodgieterswerk project">
+      <img loading="lazy" src="images/project-1.jpg" alt="Loodgieterswerk project">
       <div class="card-content">
         <h3>Loodgieterswerk</h3>
         <small>23 januari, 2025</small>
@@ -1540,7 +1539,7 @@
     </a>
     <!-- Block 2 -->
     <a href="projecten.html" class="card">
-      <img src="images/project-2.jpg" alt="Dakwerkrenovatie project">
+      <img loading="lazy" src="images/project-2.jpg" alt="Dakwerkrenovatie project">
       <div class="card-content">
         <h3>Dakwerkrenovatie &amp; Reparatie</h3>
         <small>4 oktober, 2024</small>
@@ -1550,7 +1549,7 @@
   </div>
   <div class="projects-link-center">
     <a href="projecten.html" class="projects-cta-btn">
-      Bekijk onze eerdere projecten <i class="fas fa-arrow-right"></i>
+      Meer projecten bekijken <i class="fas fa-arrow-right"></i>
     </a>
   </div>
 </div>
@@ -1701,8 +1700,6 @@
 </div>
 
 <!-- ===== INFO SECTION ===== -->
-<!-- Font Awesome for Icons -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <div class="info-section">
   <div class="info-box">
     <div class="info-box-icon"><i class="fas fa-comment-dots"></i></div>
@@ -1727,7 +1724,7 @@
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
   <div class="footer-logo">
-    <img src="images/logo-white.png" alt="Beuker Bouw &amp; Installatie" onerror="this.src='images/logo.png'">
+    <img loading="lazy" src="images/logo-white.png" alt="Beuker Bouw &amp; Installatie" onerror="this.src='images/logo.png'">
   </div>
   <div class="footer-contact">
     <a href="tel:+31613871455"><i class="fas fa-phone"></i> +31 6 13871455</a>
